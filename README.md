@@ -1,9 +1,15 @@
-# Vector manipulation for JavaScript
+# Vector manipulation in JavaScript
 
 ## Overview
 
+VectorAlgebra is a JavaScript library containing functions useful in vector manipulation.
+Can be used on front end (manipulating objects on HTML5 Canvas or SVG),
+as well as on back end to make computation on vector spaces.
+
+It's extremely fast and has no limit for number of dimensions.
+
 Basic operations
-* add/subtract/multiply/divide vectors or vectors with scalars
+* add / subtract / multiply / divide vectors or vectors and scalars
 * norm (length)
 * distance
 * dot product
@@ -12,7 +18,7 @@ Basic operations
 
 Angle
 * angleBetween - angle between two vectors
-* angle - angle between vector and beginning of coordinate system
+* angle - angle between vector and beginning of coordinate system (faster than angleBetween)
 
 Transformations
 * rotation
@@ -28,8 +34,8 @@ var vector = require('vector-algebra');
 // add two vectors
 vector.add([1, 2], [1, 4]); // [2, 6]
 
-// add scalar to vector
-vector.add([1, 2], 1); // [2, 3]
+// multiply vector by scalar
+vector.multiply([1, 2], 2); // [2, 4]
 
 // norm and distance
 vector.norm([1, 1]); // sqrt(2)
