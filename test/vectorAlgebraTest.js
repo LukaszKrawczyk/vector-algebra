@@ -53,7 +53,7 @@ describe('VectorAlgebra', function() {
         });
     });
 
-    // LENGTH & DISTANCE
+    // LENGTH & DISTANCE & UNIT VECTOR
 
     describe('#norm()', function() {
         it('should calculate norm (length) of a vector', function() {
@@ -66,6 +66,13 @@ describe('VectorAlgebra', function() {
         it('should calculate distance between two vectors', function() {
             var result = vector.distance([1, 1], [3, 1]);
             assert.equal(result, 2);
+        });
+    });
+
+    describe('#unit()', function() {
+        it('should calculate unit vector', function() {
+            var result = vector.unit([1, 1]);
+            assert.notStrictEqual(result, [1/Math.sqrt(2), 1/Math.sqrt(2)]);
         });
     });
 
@@ -108,23 +115,23 @@ describe('VectorAlgebra', function() {
 
     // MATRIX TRANSFORMATIONS
 
-    describe('#rotation()', function() {
+    describe('#rotate()', function() {
         it('should rotate vector', function() {
-            var result = vector.rotation([1, 1], Math.PI / 2);
+            var result = vector.rotate([1, 1], Math.PI / 2);
             var expected = [-1, 1];
             assert.equal(Math.round(result[0]), expected[0]);
             assert.equal(Math.round(result[1]), expected[1]);
         });
     });
 
-    describe('#shearing()', function() {
+    describe('#shear()', function() {
         it('should shear vector along x axis', function() {
-            var result = vector.shearing([1, 1], 2, true);
+            var result = vector.shear([1, 1], 2, true);
             assert.deepEqual(result, [3,1]);
         });
 
         it('should shear vector along y axis', function() {
-            var result = vector.shearing([1, 1], 2, false);
+            var result = vector.shear([1, 1], 2, false);
             assert.deepEqual(result, [1,3]);
         });
     });

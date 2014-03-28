@@ -37,9 +37,10 @@ vector.add([1, 2], [1, 4]); // [2, 6]
 // multiply vector by scalar
 vector.multiply([1, 2], 2); // [2, 4]
 
-// norm and distance
+// norm, distance and unit vector
 vector.norm([1, 1]); // sqrt(2)
 vector.distance([1, 1], [3, 1]); // 2
+vector.unit([1, 1]); // [1/sqrt(2), 1/sqrt(2)]
 ```
 
 ### Angle
@@ -59,17 +60,17 @@ vector.angleBetween([1, 0], [0, 1]); // Math.PI/2
 var vector = require('vector-algebra');
 
 // Rotation
-vector.rotation([1, 1], Math.PI/2); // ~[-1, 1] (result depend on accuracy)
+vector.rotate([1, 1], Math.PI/2); // ~[-1, 1] (result depend on accuracy)
 
 // Shearing along x axis
-vector.shearing([1, 1], 2, true); // [3, 1]
+vector.shear([1, 1], 2, true); // [3, 1]
 
 // Custom transformation
 var M = [
     [1, 3],
     [5, 2]
 ];
-vector.shearing([1, 1], M);
+vector.transform([1, 1], M);
 ```
 
 ## Testing
