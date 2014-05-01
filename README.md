@@ -11,7 +11,7 @@ It's extremely fast and has no limit for number of dimensions.
 Basic operations
 * add / subtract / multiply / divide vectors or vectors and scalars
 * norm (length)
-* distance
+* distance (euclidean, cosine, manhattan, chebyshev)
 * dot product
 * cross product (for 3 dimensional vectors only)
 * triple products (scalar and vector triple product)
@@ -37,10 +37,17 @@ vector.add([1, 2], [1, 4]); // [2, 6]
 // multiply vector by scalar
 vector.multiply([1, 2], 2); // [2, 4]
 
-// norm, distance and unit vector
+// norm and unit vector
 vector.norm([1, 1]); // sqrt(2)
-vector.distance([1, 1], [3, 1]); // 2
 vector.unit([1, 1]); // [1/sqrt(2), 1/sqrt(2)]
+```
+
+### Distance
+```
+vector.euclidean([1, 1], [3, 1]); // 2
+vector.manhattan([0, 0], [1, 1]); // 2
+vector.chebyshev([0, 0], [1, 1]); // 1
+vector.cosine([1, 1], [3, 1]); // ~0.89
 ```
 
 ### Angle
@@ -59,7 +66,7 @@ vector.angleBetween([1, 0], [0, 1]); // Math.PI/2
 ```
 var vector = require('vector-algebra');
 
-// Rotation
+// Rotation (clockwise)
 vector.rotate([1, 1], Math.PI/2); // ~[-1, 1] (result depend on accuracy)
 
 // Shearing along x axis

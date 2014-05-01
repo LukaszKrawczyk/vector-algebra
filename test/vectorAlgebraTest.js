@@ -62,10 +62,39 @@ describe('VectorAlgebra', function() {
         });
     });
 
-    describe('#distance()', function() {
-        it('should calculate distance between two vectors', function() {
-            var result = vector.distance([1, 1], [3, 1]);
+    describe('#euclidean()', function() {
+        it('should calculate euclidean distance between two vectors', function() {
+            var result = vector.euclidean([1, 1], [3, 1]);
             assert.equal(result, 2);
+        });
+    });
+
+    describe('#manhattan()', function() {
+        it('should calculate manhattan distance between two vectors', function() {
+            var result = vector.manhattan([0, 0], [1, 0]);
+            assert.equal(result, 1);
+            
+            var result = vector.manhattan([0, 0], [1, 1]);
+            assert.equal(result, 2);
+        });
+    });
+
+    describe('#chebyshev()', function() {
+        it('should calculate chebyshev distance between two vectors', function() {
+            var result = vector.chebyshev([0, 0], [1, 0]);
+            assert.equal(result, 1);
+            
+            var result = vector.chebyshev([0, 0], [1, 1]);
+            assert.equal(result, 1);
+        });
+    });
+
+    describe('#cosine()', function() {
+        function round(n) { return Math.round(n * 100) / 100 }
+    
+        it('should calculate cosine similarity between two vectors', function() {
+            var result = vector.cosine([1, 1], [3, 1]);
+            assert.equal(round(result), 0.89);
         });
     });
 
@@ -118,9 +147,12 @@ describe('VectorAlgebra', function() {
     describe('#rotate()', function() {
         it('should rotate vector', function() {
             var result = vector.rotate([1, 1], Math.PI / 2);
-            var expected = [-1, 1];
-            assert.equal(Math.round(result[0]), expected[0]);
-            assert.equal(Math.round(result[1]), expected[1]);
+            assert.equal(Math.round(result[0]), 1);
+            assert.equal(Math.round(result[1]), -1);
+
+            var result = vector.rotate([1, 1], Math.PI / 2, true);
+            assert.equal(Math.round(result[0]), -1);
+            assert.equal(Math.round(result[1]), 1);
         });
     });
 
@@ -142,6 +174,9 @@ describe('VectorAlgebra', function() {
         it('should calculate angle between two vectors', function() {
             var result = vector.angleBetween([1, 0], [0, 1]);
             assert.equal(result, Math.PI/2);
+            
+            var result = vector.angleBetween([1, 0], [0, -1]);
+            assert.equal(result, -Math.PI/2);
         });
     });
 
